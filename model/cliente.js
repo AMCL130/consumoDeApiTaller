@@ -9,7 +9,7 @@ const ClienteSchema = Schema({
 
     doc: {
         type: Number,
-        minlength: [8, 'Minimi 8 numeros'],
+        minlength: [5, 'Minimimo 5 numeros'],
         maxlength: [11, 'maximo 11 numeros'],
         required: [true, 'El numero de documento es necesario'],
     },
