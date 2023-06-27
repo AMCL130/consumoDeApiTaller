@@ -14,7 +14,7 @@ const ClienteSchema = Schema({
         type: Number,
         minlength: [5, 'Minimimo 5 numeros'],
         maxlength: [11, 'maximo 11 numeros'],
-        required: [true, 'El numero de documento es necesario'],
+        required: [true, 'El numero de documento es necesari'],
     },
 
     nombre: {
@@ -24,7 +24,7 @@ const ClienteSchema = Schema({
 
     celular: {
         type: Number,
-        required: [true, 'El numero de es necesario'],
+        required: [true, 'El numero de celular es necesario'],
         minlength: [10, 'Minimi 10 numeros'],
 
     },

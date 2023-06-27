@@ -37,7 +37,7 @@ const ProductoSchema = Schema({
         type: String,
         enum: {
             values: ['activo', 'inactivo'],
-            message: 'Estado: solo se permite "activo" o "inactivo" '
+            message: 'Estado: solo se permite "activo" o "inactiv" '
         },
         required: [true, 'Estado obligatorio']
     }
