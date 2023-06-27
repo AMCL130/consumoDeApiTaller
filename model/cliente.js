@@ -3,13 +3,16 @@ const { Schema, model } = require('mongoose')
 const ClienteSchema = Schema({
     tipo: {
         type: String,
-        enum: ['Cc', 'Otro'],
+        enum: {
+            values: ['Cc', 'Otro'],
+            message: 'Tipo: solo se permite "Cc" u "Otro" '
+        },
         required: [true, 'tipo de documento necesario']
     },
 
     doc: {
         type: Number,
-        minlength: [8, 'Minimi 8 numeros'],
+        minlength: [5, 'Minimimo 5 numeros'],
         maxlength: [11, 'maximo 11 numeros'],
         required: [true, 'El numero de documento es necesario'],
     },
@@ -38,7 +41,10 @@ const ClienteSchema = Schema({
 
     estado: {
         type: String,
-        enum:['activo','inactivo'],
+        enum: {
+            values: ['activo', 'inactivo'],
+            message: 'Estado: solo se permite "activo" o "inactivo" '
+        },
         required: [true, 'Estado obligatorio']
     },
 

@@ -3,27 +3,42 @@ const { Schema, model } = require('mongoose');
 const ProductoSchema = Schema({
     nombre: {
         type: String,
-        required:[true,'Por favor digite el nombre del producto']
+        required: [true, 'Por favor digite el nombre del producto']
     },
 
-    precio:{
+    precio: {
         type: Number,
-        required:[true,'precio necesario']
+        required: [true, 'precio necesario'],
+        validate: {
+            validator: function (value){
+                return  value > 0;
+            },
+            message: 'El precio debe ser mayor a cero'
+                }
     },
 
-    cantidad:{
+    cantidad: {
         type: Number,
-        required:[true,'cantidad necesaria']
+        required: [true, 'cantidad necesaria'],
+        validate: {
+            validator: function (value){
+                return Number.isInteger(value) && value > 0;
+            },
+            message: 'La cantidad debe ser un entero y positiva'
+                }
     },
 
-    descripcion:{
+    descripcion: {
         type: String,
-        required:[true,'descripcion necesaria']
+        required: [true, 'descripcion necesaria']
     },
 
-    estado:{
+    estado: {
         type: String,
-        enum:['activo','inactivo'],
+        enum: {
+            values: ['activo', 'inactivo'],
+            message: 'Estado: solo se permite "activo" o "inactivo" '
+        },
         required: [true, 'Estado obligatorio']
     }
 
