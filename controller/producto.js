@@ -1,4 +1,6 @@
 const { response } = require('express');
+const { validacion}= require('express-validator');
+
 
 const Producto = require('../model/producto')
 
@@ -43,6 +45,11 @@ const putProducto = async (req, res = response) => {
     const body = req.body
     console.log(body)
     let mensaje = ''
+
+    const errors= validacion(req);
+    if (!errors.empty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
 
     try {
         await Producto.findOneAndUpdate({ _id: body._id },
