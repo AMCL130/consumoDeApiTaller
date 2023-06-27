@@ -22,7 +22,7 @@ const ProductoSchema = Schema({
         required: [true, 'cantidad necesaria'],
         validate: {
             validator: function (value){
-                return Number.isInteger(value) && value < 0;
+                return Number.isInteger(value) && value > 0;
             },
             message: 'La cantidad debe ser un entero y positiva'
                 }
