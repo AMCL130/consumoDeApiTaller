@@ -1,5 +1,9 @@
 const { response } = require('express');
 // const { validacion}= require('express-validator');
+<<<<<<< HEAD
+=======
+
+>>>>>>> a0474bea3b0421ca2576a260ec492c29960da4b6
 
 const Producto = require('../model/producto')
 
@@ -50,7 +54,10 @@ const putProducto = async (req, res = response) => {
     //     return res.status(400).json({errors: errors.array()});
     // }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a0474bea3b0421ca2576a260ec492c29960da4b6
     try {
         if(precio < 1){
             // console.log('Ingresa aqui')
