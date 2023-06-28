@@ -1,5 +1,7 @@
 const { response } = require('express');
 // const { validacion}= require('express-validator');
+
+
 const Producto = require('../model/producto')
 
 
