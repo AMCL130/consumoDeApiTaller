@@ -14,7 +14,8 @@ const ProductoSchema = Schema({
                 return  value > 0;
             },
             message: 'El precio debe ser mayor a cero'
-        }
+        },
+        min: [1, 'El precio debe ser mayor a cero']
     },
 
     cantidad: {

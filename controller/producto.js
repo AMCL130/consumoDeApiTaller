@@ -1,5 +1,5 @@
 const { response } = require('express');
-const { validacion}= require('express-validator');
+// const { validacion}= require('express-validator');
 
 const Producto = require('../model/producto')
 
@@ -41,25 +41,33 @@ const postProducto = async (req, res = response) => {
 
 
 const putProducto = async (req, res = response) => {
-    const body = req.body
-    console.log(body)
+    const {_id, precio, cantidad,...body} = req.body
+    console.log(req.body)
     let mensaje = ''
 
-    const errors= validacion(req);
-    if (!errors.empty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
+    // const errors= validacion(req);
+    // if (!errors.empty()) {
+    //     return res.status(400).json({errors: errors.array()});
+    // }
 
 
     try {
-        await Producto.findOneAndUpdate({ _id: body._id },
+        if(precio < 1){
+            // console.log('Ingresa aqui')
+            throw 'El precio debe ser mayor a 0'
+        }else if(cantidad<=1){
+            throw 'La cantidad debe ser mayor a 0' 
+        }
+        await Producto.findOneAndUpdate({ _id },
             {
-                nombre: body.nombre, precio: body.precio, cantidad: body.cantidad,
-                descripcion: body.descripcion, estado: body.estado
+                // nombre: body.nombre, precio: body.precio, cantidad: body.cantidad,
+                // descripcion: body.descripcion, estado: body.estado
+                ...body
             })
         mensaje = 'Producto modificado con exito'
     } catch (error) {
         mensaje = error
+        // console.log('ingresa')
     }
 
     res.json({
