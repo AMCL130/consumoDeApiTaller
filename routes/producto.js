@@ -4,9 +4,11 @@ const route= Router();
 
 const {getProducto, postProducto, putProducto, deleteProducto}= require('../controller/producto')
 
-route.get('/', getProducto)
+const {isAuthenticated}= require('../controller/auth')
 
-route.post('/', postProducto)
+route.get('/', isAuthenticated,getProducto)
+
+route.post('/', isAuthenticated, postProducto)
 
 route.put('/', putProducto)
 

@@ -1,4 +1,6 @@
 const { response } = require('express');
+
+const bcrypt= require('bcrypt');
 // const { validacion}= require('express-validator');
 
 

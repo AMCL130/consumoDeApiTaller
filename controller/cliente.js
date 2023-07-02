@@ -1,6 +1,8 @@
 
 const { response } = require('express');
 
+const bcrypt = require('bcrypt');
+
 
 //crando objeto del modelo
 const Cliente = require('../model/cliente');
@@ -30,6 +32,7 @@ const postCliente = async (req, res = response) => {
     const body = req.body//desestructurar el cuerpo
     let mensaje = '';
     const cliente = new Cliente(body)
+    cliente.contrasena = bcrypt.hashSync(body.contrasena, 10)
     console.log(body)
 
     try {
