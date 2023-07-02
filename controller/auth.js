@@ -2,7 +2,7 @@ const Cliente = require('../model/cliente')
 const bcrypt = require('bcrypt')
 const { generarJWT } = require('../helpers/generarJwt');
 const jwt= require('jsonwebtoken')
-const cliente = require('../model/cliente');
+
 
 async function comparePassword(plaintextPassword, hash) {
     const result = await bcrypt.compare(plaintextPassword, hash);
@@ -10,7 +10,7 @@ async function comparePassword(plaintextPassword, hash) {
 }
 
 const login = async(req, res) => {
-    const { nombre, password } = req.body
+    const { nombre, contrasena } = req.body
 
     //Verificar si el email existe
     const cliente = await Cliente.findOne({nombre})
@@ -29,7 +29,7 @@ const login = async(req, res) => {
             })            
         }
 
-        resultado = await comparePassword(password, cliente.contrasena)
+        resultado = await comparePassword(contrasena, cliente.contrasena)
 
         if(resultado == true){
             const token = await generarJWT(cliente)
